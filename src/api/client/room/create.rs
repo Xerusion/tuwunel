@@ -447,10 +447,10 @@ async fn create_create_event(
 					))))
 				})?;
 
-			if !services.config.federate_created_rooms {
-				if !services.config.allow_federation || !content.contains_key("m.federate") {
-					content.insert("m.federate".into(), json!(false).try_into()?);
-				}
+			if !services.config.federate_created_rooms
+				&& (!services.config.allow_federation || !content.contains_key("m.federate"))
+			{
+				content.insert("m.federate".into(), json!(false).try_into()?);
 			}
 
 			content.insert(
@@ -579,10 +579,10 @@ async fn create_create_event_legacy(
 				},
 			}
 
-			if !services.config.federate_created_rooms {
-				if !services.config.allow_federation || !content.contains_key("m.federate") {
-					content.insert("m.federate".into(), json!(false).try_into()?);
-				}
+			if !services.config.federate_created_rooms
+				&& (!services.config.allow_federation || !content.contains_key("m.federate"))
+			{
+				content.insert("m.federate".into(), json!(false).try_into()?);
 			}
 
 			content.insert(

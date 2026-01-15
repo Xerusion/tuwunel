@@ -583,10 +583,9 @@ async fn decide_user_id(
 	if let Ok(infallible) = unique_id((provider, session))
 		.map(|h| truncate_deterministic(&h, Some(15..23)).to_lowercase())
 		.log_err()
+		&& let Some(user_id) = try_user_id(services, &infallible, true).await
 	{
-		if let Some(user_id) = try_user_id(services, &infallible, true).await {
-			return Ok(user_id);
-		}
+		return Ok(user_id);
 	}
 
 	Err!(Request(UserInUse("User ID is not available.")))
