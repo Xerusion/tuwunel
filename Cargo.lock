@@ -5137,7 +5137,6 @@ dependencies = [
 name = "tuwunel_api"
 version = "1.4.9"
 dependencies = [
- "async-trait",
  "axum",
  "axum-client-ip",
  "axum-extra",
@@ -5150,7 +5149,6 @@ dependencies = [
  "http",
  "http-body-util",
  "hyper",
- "ipaddress",
  "itertools 0.14.0",
  "log",
  "rand 0.8.5",
@@ -5193,7 +5191,6 @@ dependencies = [
  "http-body-util",
  "insta",
  "ipaddress",
- "itertools 0.14.0",
  "jevmalloc",
  "jsonwebtoken",
  "libc",

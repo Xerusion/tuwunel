@@ -72,7 +72,6 @@ futures.workspace = true
 http-body-util.workspace = true
 http.workspace = true
 ipaddress.workspace = true
-itertools.workspace = true
 jsonwebtoken.workspace = true
 libc.workspace = true
 libloading.workspace = true
