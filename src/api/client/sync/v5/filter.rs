@@ -20,6 +20,7 @@ pub(super) async fn filter_room(
 	room_id: &RoomId,
 	membership: Option<&MembershipState>,
 ) -> bool {
+	#[allow(clippy::match_same_arms)] // helps readability
 	let match_invite: OptionFuture<_> = filter
 		.is_invite
 		.map(async |is_invite| match (membership, is_invite) {
