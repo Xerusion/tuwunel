@@ -10,6 +10,11 @@ on:
     branches:
       - "**"
   workflow_dispatch:
+    inputs:
+      complement_logs:
+        type: number
+        default: -1
+        description: Disable (0), Enable (1) or Automatic (-1) complement logs artifact.
 
 concurrency:
   group: ${{github.workflow}}-${{github.ref}}
@@ -45,6 +50,8 @@ jobs:
       check_pkgs: ${{vars.CHECK_PKGS || github.ref == 'refs/heads/test'}}
       complement: ${{vars.COMPLEMENT != 'false'}}
       complement_runner: 'het'
+      complement_verbose: ${{github.event.inputs.complement_verbose || 0}}
+      complement_logs: ${{github.event.inputs.complement_logs || -1}}
       docker_repo: ${{vars.DOCKER_REPO}}
       docker_acct: ${{vars.DOCKER_ACCT}}
       release_url: ${{steps.release.outputs.upload_url}}
@@ -180,6 +187,8 @@ jobs:
       rust_sdk_integ: ${{fromJSON(needs.init.outputs.rust_sdk_integ)}}
       complement: ${{fromJSON(needs.init.outputs.complement)}}
       complement_runner: ${{needs.init.outputs.complement_runner}}
+      complement_verbose: ${{needs.init.outputs.complement_verbose}}
+      complement_logs: ${{needs.init.outputs.complement_logs}}
       cargo_profiles: ${{needs.init.outputs.cargo_profiles}}
       feat_sets: ${{needs.init.outputs.feat_sets}}
       rust_toolchains: ${{needs.init.outputs.rust_toolchains}}
